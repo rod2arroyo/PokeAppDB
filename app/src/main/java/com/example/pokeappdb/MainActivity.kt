@@ -31,6 +31,4 @@ class MainActivity : AppCompatActivity(), PokemonListFragment.OnPokemonSelectedL
     override fun onSelect(pokemon: Pokemon) {
         changePokemonDetailFragment(pokemon)
     }
-
-
 }

@@ -38,13 +38,14 @@ class PokemonListFragment : Fragment() {
         var rviPokemon = view.findViewById<RecyclerView>(R.id.rviPokemon)
 
         PokemonManager(requireActivity().applicationContext).getPokemonFB({pkList : List<Pokemon> ->
-            rviPokemon.adapter = PokemonListAdapter(
+            rviPokemon!!.adapter = PokemonListAdapter(
                 pkList,
                 this
             ){pokemon : Pokemon ->
                 listener?.onSelect(pokemon)
             }
         }) { error ->
+            Log.e("PokemonFragment", error)
             Toast.makeText(activity, "Error" + error, Toast.LENGTH_SHORT).show()
         }
     }
