@@ -16,8 +16,25 @@ class HomeActivity : AppCompatActivity(){
 
         btnContinuar.setOnClickListener { _: View ->
             val intent: Intent = Intent()
+            ventana = "normal"
             intent.setClass(this, MainActivity::class.java)
             startActivity(intent)
         }
+
+        btnFavoritos.setOnClickListener{_ : View ->
+            val intent: Intent = Intent()
+            ventana = "favoritos"
+            intent.setClass(this, MainActivity::class.java)
+            startActivity(intent)
+            println("-------------------------------------xxxxxxxxxxxxxxxxxx----------------------")
+            for(i in 0..(listaFav.size-1)){
+                println("pokkemones en favorito..---------------------->"+ listaFav[i].nombre)
+            }
+
+            for(i in 0..(listanueva.size-1)){
+                println("pokkemones generales..------------------------>"+ listanueva[i].nombre)
+            }
+        }
+
     }
 }

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img">
+
+
+    <ImageView
+        android:id="@+id/imageViews"
+        android:layout_width="137dp"
+        android:layout_height="119dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/cawwptura"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtnombrefvorito"
+        android:layout_width="107dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="28dp"
+        android:elevation="20dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        />
+
+    <TextView
+        android:id="@+id/txtRecipeName"
+        android:layout_width="74dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="176dp"
+        android:elevation="20dp"
+        android:text="hp:"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.367"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtnombrefvorito" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="74dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="4dp"
+        android:text="Attack:"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.367"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtRecipeName" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="74dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="4dp"
+        android:text="Defense:"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.367"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="74dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="4dp"
+
+        android:text="Special Attack:"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.367"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="93dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="4dp"
+        android:text="Special Defense:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.389"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <Button
+        android:id="@+id/buttonfavorito"
+        android:layout_width="167dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="108dp"
+        android:text="Agregar a favoritos"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/texthpfavorito"
+        android:layout_width="74dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="176dp"
+        android:text="14"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/txtRecipeName"
+        app:layout_constraintTop_toBottomOf="@+id/txtnombrefvorito" />
+
+    <TextView
+        android:id="@+id/textattackfavorito"
+        android:layout_width="74dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:text="45"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/texthpfavorito" />
+
+    <TextView
+        android:id="@+id/textdefensefavorito"
+        android:layout_width="74dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:text="65"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/textattackfavorito" />
+
+    <TextView
+        android:id="@+id/textspecialattackfavorito"
+        android:layout_width="74dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:text="66"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textdefensefavorito" />
+
+    <TextView
+        android:id="@+id/textspecialefencefavorito"
+        android:layout_width="74dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:text="106"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/textspecialattackfavorito" />
+</androidx.constraintlayout.widget.ConstraintLayout>

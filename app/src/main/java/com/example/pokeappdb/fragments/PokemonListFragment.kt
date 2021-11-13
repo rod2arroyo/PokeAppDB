@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokeappdb.R
 import com.example.pokeappdb.adapter.PokemonListAdapter
+import com.example.pokeappdb.listanueva
 import com.example.pokeappdb.model.Pokemon
 import com.example.pokeappdb.model.PokemonManager
 
@@ -38,6 +39,7 @@ class PokemonListFragment : Fragment() {
         var rviPokemon = view.findViewById<RecyclerView>(R.id.rviPokemon)
 
         PokemonManager(requireActivity().applicationContext).getPokemonFB({pkList : List<Pokemon> ->
+            listanueva = pkList
             rviPokemon!!.adapter = PokemonListAdapter(
                 pkList,
                 this
