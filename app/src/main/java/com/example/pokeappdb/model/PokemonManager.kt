@@ -9,7 +9,7 @@ import com.google.firebase.ktx.Firebase
 class PokemonManager(context: Context) {
     private val dbFirebase = Firebase.firestore
 
-    fun getPokemonFB(callback: (List<Pokemon>) -> Unit, callbackError: (String) -> Unit){
+    fun getPokemonFB(callbackOK: (List<Pokemon>) -> Unit, callbackError: (String) -> Unit){
         dbFirebase.collection("pokemones")
             .get()
             .addOnSuccessListener { res ->
@@ -27,6 +27,7 @@ class PokemonManager(context: Context) {
                     pokemones.add(poke)
                     println(poke)
                 }
+                callbackOK(pokemones)
             }
             .addOnFailureListener {
                 callbackError(it.message!!)
