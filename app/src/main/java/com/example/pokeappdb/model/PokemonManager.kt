@@ -5,7 +5,6 @@ import androidx.activity.OnBackPressedCallback
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-
 class PokemonManager(context: Context) {
     private val dbFirebase = Firebase.firestore
 

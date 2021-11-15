@@ -9,9 +9,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pokeappdb.adapter.PokemonListAdapter
-import com.example.pokeappdb.model.LoginManager
-import com.example.pokeappdb.model.Pokemon
-import com.example.pokeappdb.model.PokemonManager
+import com.example.pokeappdb.model.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -63,17 +61,28 @@ class HomeActivity : AppCompatActivity(){
                 LoginManager.instance.guardarUsuario(
                     txtRegistrar.text.toString(),
                     {
-                        val intent: Intent = Intent()
-                        ventana = "normal"
-                        intent.setClass(this, MainActivity::class.java)
-                        startActivity(intent)
+                        Log.e("USER REGISTERED", "CORRECT")
                     },
                     {
-                        Log.e("SignUp",it)
+                        Log.e("Registrar usuario",it)
                         Toast.makeText(this,"LA CAGASTE",Toast.LENGTH_SHORT).show()
                     }
                 )
-                //funcion crear user op
+                FavoritosManager.instance.guardarFavoritos(
+                    txtRegistrar.text.toString(),
+                    ArrayList(),
+                    {
+                        Log.e("FAVORITE REGISTERED", "CORRECT")
+                    },
+                    {
+                        Log.e("Registrar favoritos",it)
+                        Toast.makeText(this,"LA CAGASTE",Toast.LENGTH_SHORT).show()
+                    }
+                )
+                val intent: Intent = Intent()
+                ventana = "normal"
+                intent.setClass(this, MainActivity::class.java)
+                startActivity(intent)
             }
 
         }
