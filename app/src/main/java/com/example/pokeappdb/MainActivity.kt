@@ -7,12 +7,16 @@ import com.example.pokeappdb.fragments.PokemonListFavoriteFragment
 import com.example.pokeappdb.fragments.PokemonListFragment
 import com.example.pokeappdb.fragments.SpecsFragment
 import com.example.pokeappdb.model.Pokemon
+import com.example.pokeappdb.model.Usuario
 
 var pokemonactual  = Pokemon("",  0,0,0,0,0,"")
 var listaFav : ArrayList<Pokemon> = arrayListOf()
 var listanueva : List<Pokemon> = arrayListOf()
 var ventana = ""
-
+var listacompleta :ArrayList<Usuario> = arrayListOf()
+var usuarioactual : String = ""
+var listafavsolonombre :ArrayList<String> = arrayListOf()
+var poke  = Pokemon("dweeed",  0,0,0,0,0,"")
 class MainActivity : AppCompatActivity(), PokemonListFragment.OnPokemonSelectedListener, SpecsFragment.OnMenuClicked,
     PokemonListFavoriteFragment.OnMenuClicked {
     private val fragments = mutableListOf<Fragment>()
@@ -23,6 +27,8 @@ class MainActivity : AppCompatActivity(), PokemonListFragment.OnPokemonSelectedL
         fragments.add(PokemonListFragment())
         fragments.add(SpecsFragment())
         fragments.add(PokemonListFavoriteFragment())
+
+        listaFav.add(poke)
 
         if(ventana=="favoritos"){
             val ft = supportFragmentManager.beginTransaction()

@@ -11,9 +11,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokeappdb.R
 import com.example.pokeappdb.adapter.PokemonListAdapter
+import com.example.pokeappdb.listacompleta
 import com.example.pokeappdb.listanueva
 import com.example.pokeappdb.model.Pokemon
 import com.example.pokeappdb.model.PokemonManager
+import com.example.pokeappdb.model.Usuario
+import com.example.pokeappdb.model.UsuarioManager
 
 class PokemonListFragment : Fragment() {
     interface OnPokemonSelectedListener{
@@ -37,6 +40,8 @@ class PokemonListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var rviPokemon = view.findViewById<RecyclerView>(R.id.rviPokemon)
+
+
 
         PokemonManager(requireActivity().applicationContext).getPokemonFB({pkList : List<Pokemon> ->
             listanueva = pkList

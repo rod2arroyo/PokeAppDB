@@ -55,6 +55,10 @@ class HomeActivity : AppCompatActivity(){
             }else if(prueba!!){
                 println("SALIO ESTA COSA $prueba")
                 Toast.makeText(this,"Ya esta registrada",Toast.LENGTH_SHORT).show()
+                val intent: Intent = Intent()
+                ventana = "normal"
+                intent.setClass(this, MainActivity::class.java)
+                startActivity(intent)
             }else if(!prueba!!){
                 LoginManager.instance.guardarUsuario(
                     txtRegistrar.text.toString(),
@@ -69,12 +73,14 @@ class HomeActivity : AppCompatActivity(){
                         Toast.makeText(this,"LA CAGASTE",Toast.LENGTH_SHORT).show()
                     }
                 )
+                //funcion crear user op
             }
 
         }
 
         btnFavoritos.setOnClickListener{_ : View ->
             val intent: Intent = Intent()
+            usuarioactual = txtRegistrar.text.toString()
             ventana = "favoritos"
             intent.setClass(this, MainActivity::class.java)
             startActivity(intent)
