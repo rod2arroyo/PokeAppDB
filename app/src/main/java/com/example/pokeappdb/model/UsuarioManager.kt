@@ -28,6 +28,8 @@ class UsuarioManager(context: Context) {
     }
 
 
+
+
     fun guardarlista(favoritos: ArrayList<String>,
                        callbackOK: (Long) -> Unit,
                        callbackError: (String) -> Unit){
