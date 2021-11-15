@@ -19,6 +19,9 @@ import com.example.pokeappdb.model.Pokemon
 import com.example.pokeappdb.model.PokemonManager
 import com.example.pokeappdb.model.Usuario
 import com.example.pokeappdb.model.UsuarioManager
+import com.google.firebase.firestore.SetOptions
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
 class PokemonListFavoriteFragment: Fragment() {
@@ -69,6 +72,15 @@ class PokemonListFavoriteFragment: Fragment() {
 //            listaFav=ultimalista
 //        }
 
+//        val arrayop: List<String> = listOf("Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo")
+//        arrayop.add("aaa")
+//        arrayop.add("eee")
+//        arrayop.add("iii")
+//        val dbFirebase = Firebase.firestore
+//        val data = hashMapOf("favoritos" to arrayop)
+//        dbFirebase.collection("usuarioop").document("C38QOT3Md0lxApvEmFvt").set(data, SetOptions.merge())
+
+
         println("---------------------->>>>>> el nombre es : " + usuarioactual + "<<<<<<---------")
 
         UsuarioManager(requireActivity().applicationContext).getUsuariocompletoFB({ usuList : List<Usuario> ->
@@ -82,15 +94,6 @@ class PokemonListFavoriteFragment: Fragment() {
                     listafavsolonombre= listacompleta[i].favoritos
                 }
             }
-
-            for (i in 0..(listacompleta.size-1)){
-                println("---------------------->>>>>>lista completa es : " + listacompleta[i] + "<<<<<<---------")
-            }
-
-            for (i in 0..(listafavsolonombre.size-1)){
-                println("---------------------->>>>>> el ususrio es : " + listafavsolonombre[i] + "<<<<<<---------")
-            }
-
         }){ error ->
             Log.e("PokemonFragment--xx--op", error)
             Toast.makeText(activity, "Error" + error, Toast.LENGTH_SHORT).show()
@@ -98,12 +101,76 @@ class PokemonListFavoriteFragment: Fragment() {
 
 
 
+
         rviPokemon.adapter = favoritepokeadaptersolonombre(
-            listafavsolonombre
+            listafavsolonombre,{
+
+
+
+                UsuarioManager(requireActivity().applicationContext).getUsuariocompletoFB({ usuList : List<Usuario> ->
+
+                    for (i in 0..(usuList.size-1)){
+                        listacompleta.add(usuList[i])
+                    }
+                    for(i in 0..(listacompleta.size-1)){
+                        if (listacompleta[i].nombre== usuarioactual)
+                        {
+                            listafavsolonombre= listacompleta[i].favoritos
+                        }
+                    }
+                }){ error ->
+                    Log.e("PokemonFragment--xx--op", error)
+                    Toast.makeText(activity, "Error" + error, Toast.LENGTH_SHORT).show()
+                }
+
+                println("----------->>> eliminar favoirto-------->>>>" + it )
+
+
+                var listaop: List<String> = listOf()
+                var arrayop :ArrayList<String> = arrayListOf()
+                var x: Int =0
+                println("--------------------------------------")
+                println(arrayop)
+                println("--------------------------------------")
+
+
+                for(i in 0..(listafavsolonombre.size-1)){
+                    if(listafavsolonombre[i]!=it)
+                    {
+                        arrayop.add(listafavsolonombre[i])
+                    }
+                    else{
+                        x=i
+                    }
+                }
+                println("--------------------------------------")
+                println(arrayop)
+                println("--------------------------------------")
+                listaop = arrayop
+
+
+                println("------------------istaaaaa de favsss--------------------")
+                println(listafavsolonombre)
+                println("--------------------------------------")
+
+                val dbFirebase = Firebase.firestore
+                val data = hashMapOf("favoritos" to listaop)
+                dbFirebase.collection("usuarioop").document(usuarioactual).set(data, SetOptions.merge())
+                println("----------------------------------xxxxxxxxxxxxxxxxxx----" + x)
+
+              //  listafavsolonombre.removeAt(x)
+
+              //  rviPokemon.adapter?.notifyItemRemoved(x)
+
+
+            }
         ) { pokemon: String ->
             //  pokemonactual = pokemon
             //Log.i(" fvorito ",pokemon)
             //     listener?.OnClick("verinfo")
+
+
+
 
 
             listener?.OnClick("favoritoop")

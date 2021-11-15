@@ -58,7 +58,7 @@ class PokemonListAdapter (
         holder.attack.text = pokemonList[position].attack.toString()
         holder.defense.text = pokemonList[position].defense.toString()
         holder.specialAttack.text = pokemonList[position].specialAttack.toString()
-
+        holder.specialDefense.text = pokemonList[position].specialDefense.toString()
         Glide.with(fragment)
             .load(pokemonList[position].url)
             .override(550,650)

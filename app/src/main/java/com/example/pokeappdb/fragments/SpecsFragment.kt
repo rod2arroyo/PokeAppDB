@@ -2,15 +2,22 @@ package com.example.pokeappdb.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.pokeappdb.*
+import com.example.pokeappdb.model.Usuario
+import com.example.pokeappdb.model.UsuarioManager
+import com.google.firebase.firestore.SetOptions
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
 class SpecsFragment : Fragment(){
@@ -43,27 +50,7 @@ class SpecsFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //favoritos
-        val btnAgregarfavorito = view.findViewById<Button>(R.id.buttonfavorito)
-        btnAgregarfavorito.setOnClickListener{ _ : View ->
 
-            var x: Int = 0
-            for(i in 0..(listaFav.size-1)){
-                if(listaFav[i].nombre == pokemonactual.nombre)
-                {
-                    x++
-                }
-            }
-
-
-            if(x==0){
-                listaFav.add(pokemonactual)
-            }
-
-            println("contador xxxxxxxxxxxxxxxxxx..---------------------->"+ x)
-            println("ingreso de pokemon en lista fav..---------------------->"+ pokemonactual.nombre)
-            println("x en  lista fav..---------------------->"+ listaFav.size)
-        }
 
         //datos pokemon actual
 
@@ -93,6 +80,47 @@ class SpecsFragment : Fragment(){
             .override(137,119)
             .fitCenter()
             .into(imagen)
+
+        //favoritos
+        val btnAgregarfavorito = view.findViewById<Button>(R.id.buttonfavorito)
+        btnAgregarfavorito.setOnClickListener{ _ : View ->
+
+
+
+            UsuarioManager(requireActivity().applicationContext).getUsuariocompletoFB({ usuList : List<Usuario> ->
+                for (i in 0..(usuList.size-1)){
+                    listacompleta.add(usuList[i])
+                }
+                for(i in 0..(listacompleta.size-1)){
+                    if (listacompleta[i].nombre== usuarioactual){
+                        listafavsolonombre= listacompleta[i].favoritos
+                    }
+                }
+            }){ error ->
+                Log.e("PokemonFragment--xx--op", error)
+                Toast.makeText(activity, "Error" + error, Toast.LENGTH_SHORT).show()
+            }
+
+
+            //logica bd
+            var listaop: List<String> = listOf()
+            var x: Int = 0
+            for (i in 0..(listafavsolonombre.size-1)){
+                if(listafavsolonombre[i]==pokemonactual.nombre){x++}
+            }
+            if(x==0){listafavsolonombre.add(pokemonactual.nombre)}
+
+
+            listaop = listafavsolonombre
+
+            val dbFirebase = Firebase.firestore
+            val data = hashMapOf("favoritos" to listaop)
+            dbFirebase.collection("usuarioop").document(usuarioactual).set(data, SetOptions.merge())
+        }
+
+
+
+
     }
 
 

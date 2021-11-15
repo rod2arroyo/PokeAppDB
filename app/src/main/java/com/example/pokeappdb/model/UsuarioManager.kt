@@ -47,4 +47,29 @@ class UsuarioManager(context: Context) {
                 callbackError(it.message!!)
             }
     }
+
+
+
+
+
+
+//    fun  isPasswordchanged() {
+//
+//        dbFirebase.collection("usuarioop").
+//        reference.child(_USERNAME).child("passuord")
+//            .setvalue(password.getEditText() - getText().tostring());
+//        PASSNORD = password.getEditText().getText().tostring();
+//    }
+//
+//
+//
+//
+//    val docRef = dbFirebase.collection("ususarioop").document("C38QOT3Md0lxApvEmFvt")
+//
+//    // Remove the 'capital' field from the document
+//    val updates = hashMapOf<String, Any>(
+//        "capital" to FieldValue.delete()
+//    )
+//
+//    docRef.update(updates).addOnCompleteListener { }
 }
