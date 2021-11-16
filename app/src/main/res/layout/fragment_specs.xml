@@ -9,9 +9,9 @@
 
     <ImageView
         android:id="@+id/imageViews"
-        android:layout_width="137dp"
-        android:layout_height="119dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="169dp"
+        android:layout_height="147dp"
+        android:layout_marginTop="80dp"
 
 
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,11 +22,12 @@
 
     <TextView
         android:id="@+id/txtnombrefvorito"
-        android:layout_width="107dp"
-        android:layout_height="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:elevation="20dp"
         android:text="TextView"
+        android:textSize="50dp"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/white"
@@ -38,69 +39,69 @@
 
     <TextView
         android:id="@+id/txtRecipeName"
-        android:layout_width="74dp"
-        android:layout_height="17dp"
-        android:layout_marginTop="156dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
         android:elevation="20dp"
         android:text="hp:"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="#FFFFFF"
-        android:textSize="15sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.367"
+        app:layout_constraintHorizontal_bias="0.21"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtnombrefvorito" />
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="74dp"
-        android:layout_height="17dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Attack:"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="#FFFFFF"
-        android:textSize="15sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.367"
+        app:layout_constraintHorizontal_bias="0.246"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtRecipeName" />
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_width="74dp"
-        android:layout_height="17dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="Defense:"
         android:textColor="#FFFFFF"
-        android:textSize="15sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.367"
+        app:layout_constraintHorizontal_bias="0.266"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="111dp"
-        android:layout_height="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
 
         android:text="Special Attack:"
         android:textColor="#FFFFFF"
-        android:textSize="15sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.41"
+        app:layout_constraintHorizontal_bias="0.367"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
         android:id="@+id/textView9"
-        android:layout_width="116dp"
-        android:layout_height="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Special Defense:"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textColor="#FFFFFF"
-        android:textSize="15sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.413"
         app:layout_constraintStart_toStartOf="parent"
@@ -108,8 +109,8 @@
 
     <Button
         android:id="@+id/buttonfavorito"
-        android:layout_width="167dp"
-        android:layout_height="64dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="108dp"
         android:text="Agregar a favoritos"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -119,56 +120,61 @@
 
     <TextView
         android:id="@+id/texthpfavorito"
-        android:layout_width="74dp"
-        android:layout_height="17dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="156dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="160dp"
         android:text="14"
-        android:textSize="10sp"
+        android:textColor="@color/white"
+        android:textSize="30sp"
         app:layout_constraintStart_toEndOf="@+id/txtRecipeName"
         app:layout_constraintTop_toBottomOf="@+id/txtnombrefvorito" />
 
     <TextView
         android:id="@+id/textattackfavorito"
-        android:layout_width="74dp"
-        android:layout_height="17dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="148dp"
         android:layout_marginTop="4dp"
         android:text="45"
-        android:textSize="10sp"
+        android:textColor="@color/white"
+        android:textSize="30sp"
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/texthpfavorito" />
 
     <TextView
         android:id="@+id/textdefensefavorito"
-        android:layout_width="74dp"
-        android:layout_height="17dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="124dp"
         android:layout_marginTop="4dp"
         android:text="65"
-        android:textSize="10sp"
+        android:textColor="@color/white"
+        android:textSize="30sp"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textattackfavorito" />
 
     <TextView
         android:id="@+id/textspecialattackfavorito"
-        android:layout_width="74dp"
-        android:layout_height="17dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="8dp"
         android:text="66"
-        android:textSize="10sp"
+        android:textColor="@color/white"
+        android:textSize="30sp"
         app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/textdefensefavorito" />
 
     <TextView
         android:id="@+id/textspecialefencefavorito"
-        android:layout_width="74dp"
-        android:layout_height="17dp"
-        android:layout_marginStart="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:text="106"
-        android:textSize="10sp"
+        android:textColor="@color/white"
+        android:textSize="30sp"
         app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/textspecialattackfavorito" />
 </androidx.constraintlayout.widget.ConstraintLayout>

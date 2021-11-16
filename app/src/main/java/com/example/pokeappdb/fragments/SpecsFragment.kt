@@ -113,6 +113,7 @@ class SpecsFragment : Fragment(){
                 if(x==0)
                 {
                     listafavsolonombre.add(pokemonactual.nombre)
+                    Toast.makeText(activity, "Se agrego el pokemon", Toast.LENGTH_SHORT).show()
 
                 }
 
@@ -123,13 +124,10 @@ class SpecsFragment : Fragment(){
                 val data = hashMapOf("favoritos" to listaop)
                 dbFirebase.collection("usuarioop").document(usuarioactual).set(data, SetOptions.merge())
 
-
             }){ error ->
                 Log.e("PokemonFragment--xx--op", error)
                 Toast.makeText(activity, "Error" + error, Toast.LENGTH_SHORT).show()
             }
-
-
 
             for (i in 0..(listacompleta.size-1)){
                 if(listacompleta[i].nombre== usuarioactual){
@@ -137,7 +135,6 @@ class SpecsFragment : Fragment(){
                 }
 
             }
-//
 
 
             println("--------------xxxxxxxxxxxxxxxxxantes-----------" + listafavsolonombre)

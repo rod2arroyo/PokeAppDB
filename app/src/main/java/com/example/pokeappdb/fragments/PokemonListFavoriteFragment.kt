@@ -94,6 +94,83 @@ class PokemonListFavoriteFragment: Fragment() {
                     listafavsolonombre= listacompleta[i].favoritos
                 }
             }
+
+            rviPokemon.adapter = favoritepokeadaptersolonombre(
+                listafavsolonombre,{
+
+
+
+                    UsuarioManager(requireActivity().applicationContext).getUsuariocompletoFB({ usuList : List<Usuario> ->
+
+                        for (i in 0..(usuList.size-1)){
+                            listacompleta.add(usuList[i])
+                        }
+                        for(i in 0..(listacompleta.size-1)){
+                            if (listacompleta[i].nombre== usuarioactual)
+                            {
+                                listafavsolonombre= listacompleta[i].favoritos
+                            }
+                        }
+                    }){ error ->
+                        Log.e("PokemonFragment--xx--op", error)
+                        Toast.makeText(activity, "Error" + error, Toast.LENGTH_SHORT).show()
+                    }
+
+                    println("----------->>> eliminar favoirto-------->>>>" + it )
+
+
+                    var listaop: List<String> = listOf()
+                    var arrayop :ArrayList<String> = arrayListOf()
+                    var x: Int =0
+                    println("--------------------------------------")
+                    println(arrayop)
+                    println("--------------------------------------")
+
+
+                    for(i in 0..(listafavsolonombre.size-1)){
+                        if(listafavsolonombre[i]!=it)
+                        {
+                            arrayop.add(listafavsolonombre[i])
+
+                        }
+                        else{
+                            x=i
+                        }
+                    }
+                    println("--------------------------------------")
+                    println(arrayop)
+                    println("--------------------------------------")
+                    listaop = arrayop
+
+
+                    println("------------------istaaaaa de favsss--------------------")
+                    println(listafavsolonombre)
+                    println("--------------------------------------")
+
+                    val dbFirebase = Firebase.firestore
+                    val data = hashMapOf("favoritos" to listaop)
+                    dbFirebase.collection("usuarioop").document(usuarioactual).set(data, SetOptions.merge())
+                    println("----------------------------------xxxxxxxxxxxxxxxxxx----" + x)
+
+                    //  listafavsolonombre.removeAt(x)
+
+                    //  rviPokemon.adapter?.notifyItemRemoved(x)
+
+
+                }
+            ) { pokemon: String ->
+                //  pokemonactual = pokemon
+                //Log.i(" fvorito ",pokemon)
+                //     listener?.OnClick("verinfo")
+
+
+
+
+
+                listener?.OnClick("favoritoop")
+            }
+
+
         }){ error ->
             Log.e("PokemonFragment--xx--op", error)
             Toast.makeText(activity, "Error" + error, Toast.LENGTH_SHORT).show()
@@ -102,79 +179,7 @@ class PokemonListFavoriteFragment: Fragment() {
 
 
 
-        rviPokemon.adapter = favoritepokeadaptersolonombre(
-            listafavsolonombre,{
 
-
-
-                UsuarioManager(requireActivity().applicationContext).getUsuariocompletoFB({ usuList : List<Usuario> ->
-
-                    for (i in 0..(usuList.size-1)){
-                        listacompleta.add(usuList[i])
-                    }
-                    for(i in 0..(listacompleta.size-1)){
-                        if (listacompleta[i].nombre== usuarioactual)
-                        {
-                            listafavsolonombre= listacompleta[i].favoritos
-                        }
-                    }
-                }){ error ->
-                    Log.e("PokemonFragment--xx--op", error)
-                    Toast.makeText(activity, "Error" + error, Toast.LENGTH_SHORT).show()
-                }
-
-                println("----------->>> eliminar favoirto-------->>>>" + it )
-
-
-                var listaop: List<String> = listOf()
-                var arrayop :ArrayList<String> = arrayListOf()
-                var x: Int =0
-                println("--------------------------------------")
-                println(arrayop)
-                println("--------------------------------------")
-
-
-                for(i in 0..(listafavsolonombre.size-1)){
-                    if(listafavsolonombre[i]!=it)
-                    {
-                        arrayop.add(listafavsolonombre[i])
-                    }
-                    else{
-                        x=i
-                    }
-                }
-                println("--------------------------------------")
-                println(arrayop)
-                println("--------------------------------------")
-                listaop = arrayop
-
-
-                println("------------------istaaaaa de favsss--------------------")
-                println(listafavsolonombre)
-                println("--------------------------------------")
-
-                val dbFirebase = Firebase.firestore
-                val data = hashMapOf("favoritos" to listaop)
-                dbFirebase.collection("usuarioop").document(usuarioactual).set(data, SetOptions.merge())
-                println("----------------------------------xxxxxxxxxxxxxxxxxx----" + x)
-
-              //  listafavsolonombre.removeAt(x)
-
-              //  rviPokemon.adapter?.notifyItemRemoved(x)
-
-
-            }
-        ) { pokemon: String ->
-            //  pokemonactual = pokemon
-            //Log.i(" fvorito ",pokemon)
-            //     listener?.OnClick("verinfo")
-
-
-
-
-
-            listener?.OnClick("favoritoop")
-        }
 
 
 //        rviPokemon.adapter = favoritepokeadapter(

@@ -12,9 +12,7 @@ class LoginManager {
 
     private val dbFirebase = Firebase.firestore
 
-    fun guardarUsuario(nombre: String,
-                       callbackOK: (Long) -> Unit,
-                       callbackError: (String) -> Unit){
+    fun guardarUsuario(nombre: String){
 
         val data = hashMapOf<String, Any>(
             "nombre" to nombre
@@ -25,10 +23,10 @@ class LoginManager {
             .document(userId.toString())
             .set(data)
             .addOnSuccessListener {
-                callbackOK(userId)
+                println("Hola si me cree")
             }
             .addOnFailureListener {
-                callbackError(it.message!!)
+                println("Perdon falle")
             }
     }
 }

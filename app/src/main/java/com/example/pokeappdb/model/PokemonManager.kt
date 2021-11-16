@@ -32,27 +32,7 @@ class PokemonManager(context: Context) {
                 callbackError(it.message!!)
             }
     }
-    var nombre = ""
-    var prueba = false
-    fun verificarDuplicidad(nombreNuevo: String, listOK: (List<String>) -> Unit, valorBusqueda : (Boolean) -> Unit){
-        dbFirebase.collection("usuarios")
-            .get()
-            .addOnSuccessListener { res ->
-                val listNames = arrayListOf<String>()
-                for (document in res){
-                    nombre = document.data["nombre"]!! as String
-                    listNames.add(nombre)
-                }
-                for(i in 0 until listNames.size){
-                    if(nombreNuevo == listNames[i]){
-                        prueba = true
-                    }
-                }
 
-                listOK(listNames)
-                valorBusqueda(prueba)
-            }
-    }
 
 
 

@@ -16,6 +16,8 @@ import com.example.pokeappdb.model.PokemonManager
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
+var final = false
+
 class HomeActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,125 +26,129 @@ class HomeActivity : AppCompatActivity(){
         val btnContinuar = findViewById<Button>(R.id.btnContinuar)
         val btnFavoritos : Button = findViewById(R.id.btnFavoritos)
         val txtRegistrar : EditText = findViewById(R.id.userName)
-        val btnVerificar : Button = findViewById(R.id.btnVerificar)
 
         var listaSacada = arrayListOf<String>()
-
+        var nombre = ""
         var prueba = false
+        val dbFirebase = Firebase.firestore
+        var cantidad = 0
 
-        PokemonManager(this).verificarDuplicidad(txtRegistrar.text.toString(),{pkList : List<String> ->
-            listaSacada = pkList as ArrayList<String>
-            println(" ACA VA LA LISTA $listaSacada")
-        },{pkotracosa: Boolean ->
-            prueba = pkotracosa
-            println(" ACA VA EL BOOLEAN $prueba")
-        })
+        fun verificarDuplicidad(nombreNuevo: String){
+            dbFirebase.collection("usuarioop")
+                .get()
+                .addOnSuccessListener { res ->
+                    val listNames = arrayListOf<String>()
+                    for (document in res){
+                        nombre = document.data["nombre"]!! as String
+                        listNames.add(nombre)
+                        cantidad++
+                    }
+                    for(i in 0 until listNames.size){
+                        if(nombreNuevo == listNames[i]){
+                            final = true
+                        }
+                    }
+                    if(txtRegistrar.text.toString() == ""){
+                        Toast.makeText(this,"Esta vacio el espacio",Toast.LENGTH_SHORT).show()
+                    }else if(final!!){
+                        final = false
+                        println("SALIO ESTA COSA $final")
+                        Toast.makeText(this,"Ya esta registrada",Toast.LENGTH_SHORT).show()
+                        val intent: Intent = Intent()
+                        usuarioactual = txtRegistrar.text.toString()
+                        ventana = "normal"
+                        intent.setClass(this, MainActivity::class.java)
+                        startActivity(intent)
+                    }else if(!final!!){
+                        final = true
+                        LoginManager.instance.guardarUsuario(
+                            txtRegistrar.text.toString())
 
-
-        fun comprobarAntes(){
-            PokemonManager(this).verificarDuplicidad(txtRegistrar.text.toString(),{pkList : List<String> ->
-                listaSacada = pkList as ArrayList<String>
-                println(" ACA VA LA LISTA $listaSacada")
-            },{pkotracosa: Boolean ->
-                prueba = pkotracosa
-                println(" ACA VA EL BOOLEAN $prueba")
-            })
+                        FavoritosManager.instance.guardarFavoritos(
+                            txtRegistrar.text.toString(),
+                            ArrayList(),
+                            {
+                                Log.e("FAVORITE REGISTERED", "CORRECT")
+                            },
+                            {
+                                Log.e("Registrar favoritos",it)
+                                Toast.makeText(this,"LA CAGASTE",Toast.LENGTH_SHORT).show()
+                            }
+                        )
+                        val intent: Intent = Intent()
+                        usuarioactual = txtRegistrar.text.toString()
+                        ventana = "normal"
+                        intent.setClass(this, MainActivity::class.java)
+                        startActivity(intent)
+                    }
+                    println(cantidad)
+                    println("me pusieron aca" + listNames.size)
+                    println("verifique $final")
+                }
+            println("ANTES DE VERIFICAR $final")
         }
 
-        btnVerificar.setOnClickListener{v : View ->
-            comprobarAntes()
+        fun verificarDuplicidad2(nombreNuevo: String){
+            dbFirebase.collection("usuarioop")
+                .get()
+                .addOnSuccessListener { res ->
+                    val listNames = arrayListOf<String>()
+                    for (document in res){
+                        nombre = document.data["nombre"]!! as String
+                        listNames.add(nombre)
+                        cantidad++
+                    }
+                    for(i in 0 until listNames.size){
+                        if(nombreNuevo == listNames[i]){
+                            final = true
+                        }
+                    }
+                    if(txtRegistrar.text.toString() == ""){
+                        Toast.makeText(this,"Esta vacio el espacio",Toast.LENGTH_SHORT).show()
+                    }else if(final!!){
+                        final = false
+                        println("SALIO ESTA COSA $final")
+                        Toast.makeText(this,"Ya esta registrada",Toast.LENGTH_SHORT).show()
+                        val intent: Intent = Intent()
+                        usuarioactual = txtRegistrar.text.toString()
+                        ventana = "favoritos"
+                        intent.setClass(this, MainActivity::class.java)
+                        startActivity(intent)
+                    }else if(!final!!){
+                        final = true
+                        LoginManager.instance.guardarUsuario(
+                            txtRegistrar.text.toString())
 
+                        FavoritosManager.instance.guardarFavoritos(
+                            txtRegistrar.text.toString(),
+                            ArrayList(),
+                            {
+                                Log.e("FAVORITE REGISTERED", "CORRECT")
+                            },
+                            {
+                                Log.e("Registrar favoritos",it)
+                                Toast.makeText(this,"LA CAGASTE",Toast.LENGTH_SHORT).show()
+                            }
+                        )
+                        val intent: Intent = Intent()
+                        usuarioactual = txtRegistrar.text.toString()
+                        ventana = "favoritos"
+                        intent.setClass(this, MainActivity::class.java)
+                        startActivity(intent)
+                    }
+                    println(cantidad)
+                    println("me pusieron aca" + listNames.size)
+                    println("verifique $final")
+                }
+            println("ANTES DE VERIFICAR $final")
         }
 
         btnContinuar.setOnClickListener { v : View ->
-            comprobarAntes()
-            Thread.sleep(1_000)
-            Thread.sleep(1_000)
-            println("ANTES DE VERIFICAR $prueba")
-            if(txtRegistrar.text.toString() == ""){
-                Toast.makeText(this,"Esta vacio el espacio",Toast.LENGTH_SHORT).show()
-            }else if(prueba!!){
-                println("SALIO ESTA COSA $prueba")
-                Toast.makeText(this,"Ya esta registrada",Toast.LENGTH_SHORT).show()
-                val intent: Intent = Intent()
-                usuarioactual = txtRegistrar.text.toString()
-                ventana = "normal"
-                intent.setClass(this, MainActivity::class.java)
-                startActivity(intent)
-            }else if(!prueba!!){
-                LoginManager.instance.guardarUsuario(
-                    txtRegistrar.text.toString(),
-                    {
-                        Log.e("USER REGISTERED", "CORRECT")
-                    },
-                    {
-                        Log.e("Registrar usuario",it)
-                        Toast.makeText(this,"LA CAGASTE",Toast.LENGTH_SHORT).show()
-                    }
-                )
-                FavoritosManager.instance.guardarFavoritos(
-                    txtRegistrar.text.toString(),
-                    ArrayList(),
-                    {
-                        Log.e("FAVORITE REGISTERED", "CORRECT")
-                    },
-                    {
-                        Log.e("Registrar favoritos",it)
-                        Toast.makeText(this,"LA CAGASTE",Toast.LENGTH_SHORT).show()
-                    }
-                )
-                val intent: Intent = Intent()
-                usuarioactual = txtRegistrar.text.toString()
-                ventana = "normal"
-                intent.setClass(this, MainActivity::class.java)
-                startActivity(intent)
-            }
-
+            verificarDuplicidad(txtRegistrar.text.toString())
         }
 
         btnFavoritos.setOnClickListener{_ : View ->
-            comprobarAntes()
-            Thread.sleep(1_000)
-            Thread.sleep(1_000)
-            println("ANTES DE VERIFICAR $prueba")
-            if(txtRegistrar.text.toString() == ""){
-                Toast.makeText(this,"Esta vacio el espacio",Toast.LENGTH_SHORT).show()
-            }else if(prueba!!){
-                println("SALIO ESTA COSA $prueba")
-                Toast.makeText(this,"Ya esta registrada",Toast.LENGTH_SHORT).show()
-                val intent: Intent = Intent()
-                usuarioactual = txtRegistrar.text.toString()
-                ventana = "favoritos"
-                intent.setClass(this, MainActivity::class.java)
-                startActivity(intent)
-            }else if(!prueba!!){
-                LoginManager.instance.guardarUsuario(
-                    txtRegistrar.text.toString(),
-                    {
-                        Log.e("USER REGISTERED", "CORRECT")
-                    },
-                    {
-                        Log.e("Registrar usuario",it)
-                        Toast.makeText(this,"LA CAGASTE",Toast.LENGTH_SHORT).show()
-                    }
-                )
-                FavoritosManager.instance.guardarFavoritos(
-                    txtRegistrar.text.toString(),
-                    ArrayList(),
-                    {
-                        Log.e("FAVORITE REGISTERED", "CORRECT")
-                    },
-                    {
-                        Log.e("Registrar favoritos",it)
-                        Toast.makeText(this,"LA CAGASTE",Toast.LENGTH_SHORT).show()
-                    }
-                )
-                val intent: Intent = Intent()
-                usuarioactual = txtRegistrar.text.toString()
-                ventana = "favoritos"
-                intent.setClass(this, MainActivity::class.java)
-                startActivity(intent)
-            }
+            verificarDuplicidad2(txtRegistrar.text.toString())
             println("-------------------------------------xxxxxxxxxxxxxxxxxx----------------------")
             for(i in 0..(listaFav.size-1)){
                 println("pokkemones en favorito..---------------------->"+ listaFav[i].nombre)
@@ -152,8 +158,5 @@ class HomeActivity : AppCompatActivity(){
                 println("pokkemones generales..------------------------>"+ listanueva[i].nombre)
             }
         }
-
-
-
     }
 }
