@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity(), PokemonListFragment.OnPokemonSelectedL
         val fragment = fragments[1]
         val ft = supportFragmentManager.beginTransaction()
         ft.replace(R.id.flaContent, fragment)
+        ft.addToBackStack(null)
         pokemonactual=pokemon
         ft.commit()
     }

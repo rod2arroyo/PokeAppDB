@@ -24,6 +24,7 @@ class HomeActivity : AppCompatActivity(){
         val btnContinuar = findViewById<Button>(R.id.btnContinuar)
         val btnFavoritos : Button = findViewById(R.id.btnFavoritos)
         val txtRegistrar : EditText = findViewById(R.id.userName)
+        val btnVerificar : Button = findViewById(R.id.btnVerificar)
 
         var listaSacada = arrayListOf<String>()
 
@@ -48,9 +49,15 @@ class HomeActivity : AppCompatActivity(){
             })
         }
 
-        btnContinuar.setOnClickListener { v : View ->
-
+        btnVerificar.setOnClickListener{v : View ->
             comprobarAntes()
+
+        }
+
+        btnContinuar.setOnClickListener { v : View ->
+            comprobarAntes()
+            Thread.sleep(1_000)
+            Thread.sleep(1_000)
             println("ANTES DE VERIFICAR $prueba")
             if(txtRegistrar.text.toString() == ""){
                 Toast.makeText(this,"Esta vacio el espacio",Toast.LENGTH_SHORT).show()
@@ -95,6 +102,8 @@ class HomeActivity : AppCompatActivity(){
 
         btnFavoritos.setOnClickListener{_ : View ->
             comprobarAntes()
+            Thread.sleep(1_000)
+            Thread.sleep(1_000)
             println("ANTES DE VERIFICAR $prueba")
             if(txtRegistrar.text.toString() == ""){
                 Toast.makeText(this,"Esta vacio el espacio",Toast.LENGTH_SHORT).show()

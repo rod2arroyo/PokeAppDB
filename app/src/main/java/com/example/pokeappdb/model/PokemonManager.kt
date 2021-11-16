@@ -48,6 +48,7 @@ class PokemonManager(context: Context) {
                         prueba = true
                     }
                 }
+
                 listOK(listNames)
                 valorBusqueda(prueba)
             }
