@@ -83,10 +83,16 @@ class SpecsFragment : Fragment(){
 
         //favoritos
 
+
         val btnAgregarfavorito = view.findViewById<Button>(R.id.buttonfavorito)
+
+        if(ven=="spects"){
+            listacompleta.clear()
+            listafavsolonombre.clear()
+        }
         btnAgregarfavorito.setOnClickListener{ _ : View ->
-
-
+            println("-------------------------------------------------" )
+            println("--------------xxxxxxxxxxxxxxxxxantesxxxx222-----------" + listafavsolonombre)
             UsuarioManager(requireActivity().applicationContext).getUsuariocompletoFB({ usuList : List<Usuario> ->
                 for (i in 0..(usuList.size-1)){
                     listacompleta.add(usuList[i])
@@ -94,32 +100,51 @@ class SpecsFragment : Fragment(){
                 for(i in 0..(listacompleta.size-1)){
                     if (listacompleta[i].nombre== usuarioactual){
                         listafavsolonombre= listacompleta[i].favoritos
+                        println("esta es la listaaa for ---------------------------------->>>>>>>>>>------->>>" +listacompleta[i].favoritos )
                     }
                 }
+
+
+                var listaop: List<String> = listOf()
+                var x: Int = 0
+                for (i in 0..(listafavsolonombre.size-1)){
+                    if(listafavsolonombre[i]==pokemonactual.nombre){x++}
+                }
+                if(x==0)
+                {
+                    listafavsolonombre.add(pokemonactual.nombre)
+
+                }
+
+                println("--------------xxxxxxxxxxxxxxxxxdespus-----------" + listafavsolonombre)
+                listaop = listafavsolonombre
+
+                val dbFirebase = Firebase.firestore
+                val data = hashMapOf("favoritos" to listaop)
+                dbFirebase.collection("usuarioop").document(usuarioactual).set(data, SetOptions.merge())
+
+
             }){ error ->
                 Log.e("PokemonFragment--xx--op", error)
                 Toast.makeText(activity, "Error" + error, Toast.LENGTH_SHORT).show()
             }
 
 
+
+            for (i in 0..(listacompleta.size-1)){
+                if(listacompleta[i].nombre== usuarioactual){
+                    println("--------------xxxxxxxxxxxxxxxxxcompletaaaaasnombres-----------" + listacompleta[i].favoritos)
+                }
+
+            }
+//
+
+
+            println("--------------xxxxxxxxxxxxxxxxxantes-----------" + listafavsolonombre)
+
             //logica bd
-            var listaop: List<String> = listOf()
-            var x: Int = 0
-            for (i in 0..(listafavsolonombre.size-1)){
-                if(listafavsolonombre[i]==pokemonactual.nombre){x++}
-            }
-            if(x==0)
-            {
-                listafavsolonombre.add(pokemonactual.nombre)
 
-            }
-
-
-            listaop = listafavsolonombre
-
-            val dbFirebase = Firebase.firestore
-            val data = hashMapOf("favoritos" to listaop)
-            dbFirebase.collection("usuarioop").document(usuarioactual).set(data, SetOptions.merge())
+            ven = "no"
         }
 
 

@@ -17,6 +17,7 @@ var listacompleta :ArrayList<Usuario> = arrayListOf()
 var usuarioactual : String = ""
 var listafavsolonombre :ArrayList<String> = arrayListOf()
 var poke  = Pokemon("dweeed",  0,0,0,0,0,"")
+var ven :String ="fwef"
 class MainActivity : AppCompatActivity(), PokemonListFragment.OnPokemonSelectedListener, SpecsFragment.OnMenuClicked,
     PokemonListFavoriteFragment.OnMenuClicked {
     private val fragments = mutableListOf<Fragment>()
