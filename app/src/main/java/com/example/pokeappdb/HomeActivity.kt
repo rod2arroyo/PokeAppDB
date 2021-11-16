@@ -49,6 +49,7 @@ class HomeActivity : AppCompatActivity(){
         }
 
         btnContinuar.setOnClickListener { v : View ->
+
             comprobarAntes()
             println("ANTES DE VERIFICAR $prueba")
             if(txtRegistrar.text.toString() == ""){

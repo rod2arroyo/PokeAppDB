@@ -82,9 +82,9 @@ class SpecsFragment : Fragment(){
             .into(imagen)
 
         //favoritos
+
         val btnAgregarfavorito = view.findViewById<Button>(R.id.buttonfavorito)
         btnAgregarfavorito.setOnClickListener{ _ : View ->
-
 
 
             UsuarioManager(requireActivity().applicationContext).getUsuariocompletoFB({ usuList : List<Usuario> ->
@@ -108,7 +108,11 @@ class SpecsFragment : Fragment(){
             for (i in 0..(listafavsolonombre.size-1)){
                 if(listafavsolonombre[i]==pokemonactual.nombre){x++}
             }
-            if(x==0){listafavsolonombre.add(pokemonactual.nombre)}
+            if(x==0)
+            {
+                listafavsolonombre.add(pokemonactual.nombre)
+
+            }
 
 
             listaop = listafavsolonombre

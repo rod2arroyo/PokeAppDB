@@ -77,8 +77,8 @@
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="74dp"
-        android:layout_height="17dp"
+        android:layout_width="96dp"
+        android:layout_height="16dp"
         android:layout_marginStart="27dp"
         android:layout_marginTop="4dp"
         android:text="Special Attack:"
@@ -88,7 +88,7 @@
 
     <TextView
         android:id="@+id/textView9"
-        android:layout_width="74dp"
+        android:layout_width="98dp"
         android:layout_height="17dp"
         android:layout_marginStart="27dp"
         android:layout_marginTop="4dp"

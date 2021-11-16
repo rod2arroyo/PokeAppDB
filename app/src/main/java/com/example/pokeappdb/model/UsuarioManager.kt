@@ -27,29 +27,27 @@ class UsuarioManager(context: Context) {
             }
     }
 
-
-
-
-    fun guardarlista(favoritos: ArrayList<String>,
-                       callbackOK: (Long) -> Unit,
-                       callbackError: (String) -> Unit){
-
-        val data = hashMapOf<String, Any>(
-            "favoritos" to favoritos
-        )
-
-        val userId = System.currentTimeMillis()
-        dbFirebase.collection("usuarioop")
-            .document(userId.toString())
-            .set(data)
-            .addOnSuccessListener {
-                callbackOK(userId)
-            }
-            .addOnFailureListener {
-                callbackError(it.message!!)
-            }
-    }
-
+//
+//    fun guardarlista(favoritos: ArrayList<String>,
+//                       callbackOK: (Long) -> Unit,
+//                       callbackError: (String) -> Unit){
+//
+//        val data = hashMapOf<String, Any>(
+//            "favoritos" to favoritos
+//        )
+//
+//        val userId = System.currentTimeMillis()
+//        dbFirebase.collection("usuarioop")
+//            .document(userId.toString())
+//            .set(data)
+//            .addOnSuccessListener {
+//                callbackOK(userId)
+//            }
+//            .addOnFailureListener {
+//                callbackError(it.message!!)
+//            }
+//    }
+//
 
 
 
